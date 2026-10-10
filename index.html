@@ -6,7 +6,7 @@
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;padding:10px;background:var(--bg)}
 .top button{flex:1;padding:10px 2px;border:0;border-radius:14px;background:var(--cd);color:var(--mu);font-weight:600;font-size:12px;line-height:1.3}
 .top button.a{background:var(--ac);color:#fff}
-#v{padding:0 10px 10px}
+#v{padding:10px}
 .z{background:var(--cd);border:2px dashed var(--bd);border-radius:16px;padding:8px;margin-bottom:8px;transition:.2s}
 .z.hov{border-color:var(--ac);transform:scale(1.02)}
 .z h3{margin:0 0 6px;font-size:13px;color:var(--mu);display:flex;align-items:center;gap:6px;justify-content:space-between}
@@ -43,7 +43,7 @@
 .em{color:var(--mu);font-size:12px;padding:4px}
 .sh{display:flex;gap:6px;margin:6px 0 10px}.sh .btn{flex:1;text-align:center}
 .pre{white-space:pre-wrap;font:14px/1.5 system-ui,sans-serif;margin:0 0 8px;user-select:text;-webkit-user-select:text;max-height:260px;overflow:auto}
-</style></head><body><div class="top"><button data-m="inv">🏢<br>Инвентарь</button><button data-m="shop">🛒<br>Покупки</button><button data-m="bag">🎒<br>Сумка</button></div><div id="v"></div><div class="ft" id="ft"></div><script>
+</style></head><body><div id="v"></div><div class="ft" id="ft"></div><script>
 const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const IC={r:'<svg viewBox="0 0 40 40"><rect x="22" y="2" width="4" height="10" rx="2" fill="currentColor"/><rect x="11" y="10" width="18" height="28" rx="4" fill="currentColor"/><rect x="15" y="14" width="10" height="7" rx="1" fill="#0007"/><path d="M15 26h10M15 29h10M15 32h10" stroke="#0007" stroke-width="1.5"/></svg>',d:'<svg viewBox="0 0 40 40"><rect x="4" y="11" width="32" height="22" rx="5" fill="currentColor"/><circle cx="20" cy="22" r="7" fill="#0007"/><circle cx="20" cy="22" r="3" fill="currentColor"/><rect x="12" y="7" width="8" height="5" rx="1" fill="currentColor"/></svg>',s:'<svg viewBox="0 0 40 40"><rect x="5" y="6" width="30" height="28" rx="4" fill="currentColor"/><rect x="8" y="9" width="24" height="20" rx="1" fill="#0007"/><circle cx="20" cy="32" r="1.3" fill="#0007"/></svg>',b:'<svg viewBox="0 0 40 40"><path d="M14 13v-3a3 3 0 013-3h6a3 3 0 013 3v3" fill="none" stroke="currentColor" stroke-width="3"/><rect x="5" y="13" width="30" height="22" rx="5" fill="currentColor"/><rect x="17" y="21" width="6" height="5" rx="1" fill="#0007"/></svg>'};
 const LB={r:'Рация',d:'Дозор',s:'СКС',b:'Сумка'};
@@ -67,7 +67,7 @@ if(!S.fz)S.fz=[{id:'dep',k:'dep',fl:(S.fl||{}).dep||'856'}];
 delete S.sets;S.fz=S.fz.filter(f=>{if(f.k!='arr')return true;S.items.forEach(i=>{if(i.loc==f.id)i.loc='office'});return false});
 if(!S.v4){S.v4=1;for(let i=1;i<=6;i++)S.items.push({id:S.n++,t:'d',n:'Дозор '+i,loc:'office'});['Шампунь','Мыло'].forEach(n=>{if(!S.bag.train.some(p=>p.n==n))S.bag.train.push({n,c:0,g:GN[4]})})}
 if(!S.ags){S.ags=[];const nm={};S.items.forEach(i=>{if(i.loc=='ag'){const n=(i.ag||'').trim()||'Без имени';if(!nm[n]){nm[n]='a'+S.n++;S.ags.push({id:nm[n],n})}i.loc='ag:'+nm[n]}})}
-let armed=0,selK=0,selI=0,dg=0;if(S.m=='home')S.m='inv';if(S.bo===undefined)S.bo=GN[0];
+let armed=0,selK=0,selI=0,dg=0;S.m='inv';if(S.bo===undefined)S.bo=GN[0];
 if(!S.v7){S.v7=1;S.items=S.items.filter(i=>i.n!='Дозор СВ check-in');if(!S.items.some(i=>i.n=='Рация СВ boarding'))S.items.push({id:S.n++,t:'r',n:'Рация СВ boarding',loc:'office'});for(let k=8;k<=10;k++)if(!S.items.some(i=>i.n=='СКС '+k))S.items.push({id:S.n++,t:'s',n:'СКС '+k,loc:'office'})}
 if(!S.v6){S.v6=1;S.items.forEach(i=>{if(i.loc=='t2')i.loc='office'});['road','train'].forEach(m=>S.bag[m].forEach(p=>{if(p.n=='Шлепанцы')p.n='Сланцы'}));['Туфли','Кроссовки','Сандали','Кеды','Сланцы'].forEach(n=>{if(!S.bag.road.some(p=>p.n==n))S.bag.road.push({n,c:0,g:GN[1]})})}
 if(!S.v5){S.v5=1;S.bag.road=S.bag.road.filter(p=>p.n!='Платье для вечеринки');[[GN[0],'Футболка'],[GN[0],'Ветровка'],[GN[1],'Туфли'],[GN[2],'Ноутбук'],[GN[2],'Камера'],[GN[2],'Проектор']].forEach(([g,n])=>{if(!S.bag.road.some(p=>p.n==n))S.bag.road.push({n,c:0,g})})}function persist(){try{localStorage.setItem('invapp3',JSON.stringify(S))}catch(e){}}
